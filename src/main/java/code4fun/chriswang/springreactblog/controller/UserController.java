@@ -1,15 +1,42 @@
 package code4fun.chriswang.springreactblog.controller;
 
 import code4fun.chriswang.springreactblog.model.User;
+import code4fun.chriswang.springreactblog.utils.Utilities;
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 @RequestMapping("123/")
 public class UserController {
+
+    private static List<User> addedUsers = new LinkedList<>();
+    private static int userId = 0;
+
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String getUser(@RequestBody User user) {
+        System.out.println("The user added is: "+user+"\n username = " + user.getUsername() + "\n password = " + user.getPassword());
+//        user.setId(++userId);
+        JSONArray jsonArray = new JSONArray();
+        for (User u : addedUsers) {
+            JSONObject userJson = Utilities.createJSONObject(u);
+            jsonArray.put(userJson);
+        }
+        return jsonArray.toString();
+    }
+
     @RequestMapping(value = "user", method = RequestMethod.POST)
     public String addUser(@RequestBody User user) {
-        return "The user added is: "+user+"\n username = " + user.getUsername() + "\n password = " + user.getPassword();
+        System.out.println("The user added is: "+user+"\n username = " + user.getUsername() + "\n password = " + user.getPassword());
+        user.setId(++userId);
+        JSONObject response = Utilities.createJSONObject(user);
+        if (response != null) {
+            addedUsers.add(user);
+        }
+        return response.toString();
     }
 }

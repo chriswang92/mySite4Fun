@@ -12,13 +12,14 @@ class LoginOrRegisterForm extends React.Component {
     super(props); 
     this.isLogin = this.props.isLogin;
     console.log('in loginregform constructor, this.props.registeredUse=',this.props.registeredUsers);
-    this.registeredUsers = this.isLogin? this.props.registeredUsers : null;
+    console.log('before getAllUsers, users=',this.registeredUsers);
+    this.registeredUsers = this.isLogin?this.props.getAllUsers():null;//this.isLogin? this.props.registeredUsers : null;
+    console.log('after getAllUsers, users=',this.registeredUsers);
     this.loginSuccess = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setLoginSuccess = this.setLoginSuccess.bind(this);
   }
   handleRegister = e => {
-    console.log('in handleSubmit, saw a register submit, doing fields validate..');
     this.props.form.validateFields((err, values) => {
       if (err) {
         console.log('handleRegister has err: ',err);

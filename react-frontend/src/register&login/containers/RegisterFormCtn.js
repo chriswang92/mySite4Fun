@@ -2,7 +2,7 @@
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {registerUser} from '../actions/apis';
+import {registerUser, getAllUsers} from '../actions/apis';
 import LoginOrRegisterForm from '../components/LoginOrRegisterForm';
 
 
@@ -11,7 +11,8 @@ const mapStateToProps = (state,props)=>({
 });
 const mapDispatchToProps = dispatch => 
 bindActionCreators({
-  registerUser
+  registerUser,
+  getAllUsers
 },
 dispatch);
 
