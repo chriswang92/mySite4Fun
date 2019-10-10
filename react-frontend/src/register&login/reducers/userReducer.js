@@ -23,7 +23,7 @@ export default function userReducer(state=[], action) {
             console.log('in userReducer->GET_ALL_USERS, state=',state,', action=',action);
             const immuData2 = 
             { ...state,
-                users: state.users.concat(action.payload.allUsers)
+                users: action.payload.allUsers
             };
             console.log('immuData2=',immuData2);
             return immuData2;
