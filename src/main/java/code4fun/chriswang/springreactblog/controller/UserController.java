@@ -18,8 +18,8 @@ public class UserController {
     private static int userId = 0;
 
     @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String getUser(@RequestBody User user) {
-        System.out.println("The user added is: "+user+"\n username = " + user.getUsername() + "\n password = " + user.getPassword());
+    public String getUser() {
+//        System.out.println("The user added is: "+user+"\n username = " + user.getUsername() + "\n password = " + user.getPassword());
 //        user.setId(++userId);
         JSONArray jsonArray = new JSONArray();
         for (User u : addedUsers) {
