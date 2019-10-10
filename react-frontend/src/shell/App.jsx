@@ -13,7 +13,7 @@ const persistedState = { [USER_STATE]: initialState };
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.store = configureStore(initialState);
+    this.store = configureStore(persistedState);
   }
 
   componentDidMount() {

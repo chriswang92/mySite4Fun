@@ -12,9 +12,14 @@ class LoginOrRegisterForm extends React.Component {
     super(props); 
     this.isLogin = this.props.isLogin;
     console.log('in loginregform constructor, this.props.registeredUse=',this.props.registeredUsers);
-    console.log('before getAllUsers, users=',this.registeredUsers);
-    this.registeredUsers = this.isLogin?this.props.getAllUsers():null;//this.isLogin? this.props.registeredUsers : null;
-    console.log('after getAllUsers, users=',this.registeredUsers);
+
+    //Update all_users list
+    if (!this.isLogin) {
+      console.log('before getAllUsers, users=',this.registeredUsers); 
+      this.registeredUsers = !this.isLogin?this.props.getAllUsers():null;//this.isLogin? this.props.registeredUsers : null;
+      console.log('after getAllUsers, users=',this.registeredUsers,'state=',this.state);
+    }
+
     this.loginSuccess = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setLoginSuccess = this.setLoginSuccess.bind(this);

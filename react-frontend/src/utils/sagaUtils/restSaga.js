@@ -50,9 +50,32 @@ export function* postSaga({
     yield put(success(response, resHeader));
   }
 }
+
+function* handleGetRequest(url) {
+  return yield call(fetchApi, url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Content-Encoding': 'gzip'
+    },
+    type: 'application/json'
+  });
+}
+export function* getSaga({ 
+  payload: {url, success} 
+}) {
+  console.log('reached getSaga...');
+  const {response,resHeader,err} = yield* handleGetRequest(url);
+  if (response) {
+    console.log('--------------getsaga success, response:', response);
+    yield put(success(response, resHeader));
+  }
+}
+
+
 export default function* restSaga() {
   yield all([
-    // takeEvery(GET, getSaga),
+    takeEvery(GET, getSaga),
     // takeEvery(PUT, putSaga),
     takeEvery(POST, postSaga)
   ]);

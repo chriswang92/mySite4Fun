@@ -26,6 +26,7 @@ public class UserController {
             JSONObject userJson = Utilities.createJSONObject(u);
             jsonArray.put(userJson);
         }
+        System.out.println("The users returned=" + jsonArray.toString());
         return jsonArray.toString();
     }
 

@@ -8,13 +8,13 @@ export default function userReducer(state=[], action) {
         case REGISTER_USER:
             console.log('in userReducer->REGISTER_USER, state=',state,', action=',action);
             const immuData = 
-            [ ...state,
-                {
+            { ...state,
+                users: state.users.concat({
                     id: action.payload.newRecord.id,
-                    username: action.payload.newRecord.userInfo.username,
-                    password: action.payload.newRecord.userInfo.password
-                }
-            ];
+                    username: action.payload.newRecord.username,
+                    password: action.payload.newRecord.password
+                })
+            };
             // return state.withMutations(mutableState => 
             //     mutableState.set(immuData));
             return immuData;
@@ -22,13 +22,10 @@ export default function userReducer(state=[], action) {
         case GET_ALL_USERS:
             console.log('in userReducer->GET_ALL_USERS, state=',state,', action=',action);
             const immuData2 = 
-            [ ...state,
-                {
-                    allUsers: action.payload.userInfo
-                }
-            ];
-            // return state.withMutations(mutableState => 
-            //     mutableState.set(immuData));
+            { ...state,
+                users: state.users.concat(action.payload.allUsers)
+            };
+            console.log('immuData2=',immuData2);
             return immuData2;
 
         case LOGIN_USER:
