@@ -9,11 +9,10 @@ import { getAllUsers} from '../actions/apis';
 const mapStateToProps = (state, props) => ({
   users: userSelector(state)
 });
-const mapDispatchToProps = dispatch => 
-bindActionCreators({
-  // registerUser,
-  getAllUsers
-},
-dispatch);
+const mapDispatchToProps = null;
+// dispatch => 
+// bindActionCreators({
+// },
+// dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

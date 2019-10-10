@@ -3,9 +3,6 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
 class Content extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     // const {getFieldDecorator} = this.props.form;

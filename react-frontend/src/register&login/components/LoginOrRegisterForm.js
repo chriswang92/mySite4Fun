@@ -11,7 +11,8 @@ class LoginOrRegisterForm extends React.Component {
   constructor(props) {
     super(props); 
     this.isLogin = this.props.isLogin;
-    console.log('in loginregform constructor, this.props.registeredUse=',this.props.registeredUsers);
+    // console.log('in loginregform constructor, this.props.registeredUse=',this.props.registeredUsers);
+    console.log('in loginregform constructor, this.props.users=',this.props.users);
 
     //Update all_users list
     if (!this.isLogin) {
@@ -28,6 +29,11 @@ class LoginOrRegisterForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (err) {
         console.log('handleRegister has err: ',err);
+        return;
+      }
+      if (this.props.users.find(u => u.username === values.username)) {
+        console.log('username already exist!');
+        return;
       }
       console.log('handleRegister success, Received values of form: ', values);
       this.props.registerUser(values);
